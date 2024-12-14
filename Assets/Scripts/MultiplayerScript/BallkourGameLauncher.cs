@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
+using TMPro;
+using static UnityEngine.Rendering.DebugUI;
 
 namespace Com.Serzz0.Ballkour
 {
@@ -44,6 +46,7 @@ namespace Com.Serzz0.Ballkour
         [Tooltip("The UI Label to inform the user that the connection is in progress")]
         [SerializeField]
         private GameObject progressLabel;
+        public TMP_InputField nameInput;
         #endregion
 
         #region MonoBehaviour CallBacks
@@ -89,6 +92,14 @@ namespace Com.Serzz0.Ballkour
             // we check if we are connected or not, we join if we are,
             // else we initiate the connection to the server.
             // </summary>
+            if (string.IsNullOrEmpty(nameInput.text))
+            {
+                Debug.LogError("Player Name is null or empty");
+                return;
+            }
+            PhotonNetwork.NickName = nameInput.text;
+            Debug.Log(nameInput.text);
+            PlayerPrefs.SetString("PlayerName", nameInput.text);
             progressLabel.SetActive(true);
             controlPanel.SetActive(false);
             if (PhotonNetwork.IsConnected)

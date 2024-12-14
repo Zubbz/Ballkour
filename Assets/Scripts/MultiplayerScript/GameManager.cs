@@ -38,7 +38,7 @@ namespace Com.Serzz0.Ballkour
                 return;
             }
             Debug.LogFormat("PhotonNetwork : Loading Level : {0}", PhotonNetwork.CurrentRoom.PlayerCount);
-            PhotonNetwork.LoadLevel("Room for " + PhotonNetwork.CurrentRoom.PlayerCount);
+            PhotonNetwork.LoadLevel("MediumLevel");
         }
 
         #endregion

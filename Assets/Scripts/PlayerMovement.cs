@@ -1,10 +1,11 @@
+using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace Com.Serzz0.Ballkour
 {
-    public class PlayerMovement : MonoBehaviour
+    public class PlayerMovement : MonoBehaviourPunCallbacks
     {
         #region Movement Stats and Controls
         /// <summary>
@@ -51,6 +52,10 @@ namespace Com.Serzz0.Ballkour
 
         private void Update() 
         {
+            if (!photonView.IsMine)
+            {
+                return;
+            }
             // ground check
             grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, groundLayer);
 
@@ -69,6 +74,10 @@ namespace Com.Serzz0.Ballkour
 
         private void FixedUpdate()
         {
+            if (!photonView.IsMine)
+            {
+                return;
+            }
             MovePlayer();
             SpeedControl();
         }

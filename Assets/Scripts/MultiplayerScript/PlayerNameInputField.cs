@@ -62,7 +62,7 @@ namespace Com.Serzz0.Ballkour
                 return;
             }
             PhotonNetwork.NickName = value;
-
+            Debug.Log(value);
             PlayerPrefs.SetString(playerNamePrefkey, value);
         }
 
